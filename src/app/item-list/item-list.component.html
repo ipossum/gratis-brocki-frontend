@@ -1,0 +1,24 @@
+
+<div *ngFor="let item of items">
+  <h3>
+    <a [title]="item.name + ' details'"
+      [routerLink]="['/items', item.id]">
+    {{ item.name }}
+    </a>
+  </h3>
+
+  <img src={{item.image}} width="150px"/>
+
+  <p *ngIf="item.description">
+    {{ item.description }}
+  </p>
+
+  <a [routerLink]="['/items', item.id]">
+    <button type="button" >
+    Details
+  </button>
+  </a>
+  <br/>
+  <br/>
+  <hr>
+</div>
