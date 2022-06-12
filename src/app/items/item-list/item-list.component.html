@@ -1,0 +1,19 @@
+<div>
+  <input type="text" name="itemName" [(ngModel)]="item.name">
+  <button [hidden]="add" (click)="addItem()">add Item</button>
+  <button [hidden]="edit" (click)="updateItem()">Update Item</button>
+</div>
+<table id="items">
+  <tr>
+    <th>S/N</th>
+    <th>Name</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let item of items">
+    <td>{{item.id}}</td>
+    <td>{{item.name}}</td>
+    <td><button (click)="setItemEdit(item)">Update</button></td>
+    <td><button (click)="removeItem(item)">Delete</button></td>
+  </tr>
+</table>
