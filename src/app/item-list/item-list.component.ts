@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from "../item.model"
-import { ItemService } from "../item.service"
+import { Item } from "../model/itemDTO";
+import { ItemService } from "../services/item.service";
 
 @Component({
   selector: 'app-item-list',
@@ -9,8 +9,15 @@ import { ItemService } from "../item.service"
 })
 export class ItemListComponent implements OnInit {
   item = {
-    name: '',
-    id: null as number
+    id: null as number,
+    title: '',
+    description: '',
+    picture: '',
+    category: '',
+    condition: '',
+    messages: '',
+    owner: '',
+    postalCode: null as number
   }
 
   edit = true;
@@ -29,8 +36,15 @@ export class ItemListComponent implements OnInit {
 
   addItem() {
     const data = {
-      name: this.item.name,
-      id: this.item.id
+      title: this.item.title,
+      id: this.item.id,
+      description: this.item.description,
+      picture: this.item.picture,
+      category: this.item.category,
+      condition: this.item.condition,
+      messages: this.item.messages,
+      owner: this.item.owner,
+      postalCode: this.item.postalCode
     };
     this.itemService.createItem(data).subscribe(response => {
       console.log(response)
@@ -39,15 +53,31 @@ export class ItemListComponent implements OnInit {
   }
 
   setItemEdit(item: Item) {
-    this.item.name = item.name;
+    this.item.title = item.title;
     this.item.id = item.id;
+    this.item.description = item.description;
+    this.item.picture = item.picture;
+    this.item.category = item.category;
+    this.item.condition = item.condition;
+    this.item.messages = item.messages;
+    this.item.owner = item.owner;
+    this.item.postalCode = item.postalCode;
+
     this.edit = false;
     this.add = true;
   }
 
   resetValues() {
-    this.item.name = "";
+    this.item.title = "";
     this.item.id = null;
+    this.item.description = '';
+    this.item.picture = '';
+    this.item.category = '';
+    this.item.condition = '';
+    this.item.messages = '';
+    this.item.owner = '';
+    this.item.postalCode = null;
+
     this.edit = true;
     this.add = false;
   }

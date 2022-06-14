@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Item } from './item.model';
+import { Item } from '../model/itemDTO';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {formatNumber} from "@angular/common";
 @Injectable({
   providedIn: 'root'
 })
@@ -36,5 +37,9 @@ export class ItemService {
 
   deleteItem(id: number): Observable<any> {
     return this.http.delete(this.itemsUrl + id);
+  }
+
+  getItem(id: number): Observable<any> {
+    return this.http.get<Item>(this.itemsUrl + id);
   }
 }

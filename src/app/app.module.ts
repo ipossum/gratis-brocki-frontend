@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-//import { ItemListComponent } from './items/item-list/item-list.component';
+import { ItemListComponent } from './item-list/item-list.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { UserComponent } from './user/user.component';
@@ -12,23 +12,23 @@ import { MessageComponent } from './message/message.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DataService } from './data.services';
 import { HttpClientModule } from '@angular/common/http';
-import {ItemsModule} from "./items/items.module";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    ItemsModule,
     HttpClientInMemoryWebApiModule.forRoot(DataService),
     HttpClientModule,
-    //RouterModule.forRoot([
-     // { path: '', component: ItemListComponent },
-    //  { path: 'items/:itemId', component: ItemDetailComponent },
-    //])
+    FormsModule,
+    RouterModule.forRoot([
+      { path: '', component: ItemListComponent },
+      { path: 'items/:itemId', component: ItemDetailComponent },
+    ])
   ],
   declarations: [
     AppComponent,
-   // ItemListComponent,
+    ItemListComponent,
     ItemDetailComponent,
     TopBarComponent,
     UserComponent,

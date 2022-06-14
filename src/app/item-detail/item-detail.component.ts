@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Item, items } from '../items';
+//import { Item, items } from '../items';
+
+import { Item } from "../model/itemDTO";
+import { ItemService } from "../services/item.service";
 
 @Component({
   selector: 'app-item-detail',
@@ -10,17 +13,19 @@ import { Item, items } from '../items';
 })
 export class ItemDetailComponent implements OnInit {
 
-  item: Item | undefined;
+  item: Item;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private itemService: ItemService) { }
 
   ngOnInit(): void {
-    // First get the product id from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const itemIdFromRoute = Number(routeParams.get('itemId'));
-
-    // Find the product that correspond with the id provided in route.
-    this.item = items.find(item => item.id === itemIdFromRoute);
+    this.getItem(itemIdFromRoute);
   }
 
+  private getItem(id:number){
+    this.itemService.getItem(id).subscribe((response:Item) => {
+      this.item = response;
+    });
+  }
 }
