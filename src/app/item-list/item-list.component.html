@@ -1,24 +1,41 @@
-
-<div *ngFor="let item of items">
-  <h3>
-    <a [title]="item.name + ' details'"
-      [routerLink]="['/items', item.id]">
-    {{ item.name }}
-    </a>
-  </h3>
-
-  <img src={{item.image}} width="150px"/>
-
-  <p *ngIf="item.description">
-    {{ item.description }}
-  </p>
-
-  <a [routerLink]="['/items', item.id]">
-    <button type="button" >
-    Details
-  </button>
+<div *ngFor="let item of items" style="width: 300px; border-style: outset; float: left; margin:10px; margin-top:20px;padding:10px;">
+  <a [title]="item.title + ' details'" [routerLink]="['/items', item.id]">
+  <!-- <p> ID: {{item.id}}</p> -->
+  <h2 >{{item.title}}</h2>
+  <img src={{item.picture}} width="280px"/>
+  <h3 style="font-weight: lighter;font-family:'Roboto', Arial, sans-serif">Description</h3>
+  <p>{{item.description}}</p>
+  <p>Category: {{item.category}}</p>
+  <p>Condition: {{item.condition}}</p>
+  <p>Owner: {{item.owner}}</p>
+  <p>PotalCode: {{item.postalCode}}</p>
+  <!-- <p>Forum: <br/>{{item.messages}}</p> -->
   </a>
-  <br/>
-  <br/>
-  <hr>
+  <button (click)="setItemEdit(item)">Update</button>&nbsp;
+  <button (click)="removeItem(item)">Delete</button>&nbsp;
+  <a [routerLink]="['/items', item.id]"><button>Details</button></a>
 </div>
+
+<div style="float:left;margin:10px;">
+  <h2> Add / Update Item</h2>
+  <label for="itemTitle">Item Name:</label>
+  <input type="text" id="itemTitle" name="itemTitle" [(ngModel)]="item.title"><br/>
+  <label for="itemTitle">Picture Url:</label>
+  <input type="text" id="itemPicture" name="itemPicture" [(ngModel)]="item.picture"><br/>
+  <label for="itemTitle">Description:</label>
+  <input type="text" id="itemDescription" name="itemDescription" [(ngModel)]="item.description"><br/>
+  <label for="itemTitle">Category:</label>
+  <input type="text" id="itemCategory" name="itemCategory" [(ngModel)]="item.category"><br/>
+  <label for="itemTitle">Condition:</label>
+  <input type="text" id="itemCondition" name="itemCondition" [(ngModel)]="item.condition"><br/>
+  <label for="itemTitle">Owner:</label>
+  <input type="text" id="itemOwner" name="itemOwner" [(ngModel)]="item.owner"><br/>
+  <label for="itemTitle">Postal Code:</label>
+  <input type="number" id="itemPostalCode" name="itemPostalCode" [(ngModel)]="item.postalCode"><br/>
+  <label for="itemTitle">Forum:</label>
+  <input type="text" id="itemMessages" name="itemMessages" [(ngModel)]="item.messages"><br/>
+
+  <button [hidden]="add" (click)="addItem()">add Item</button>&nbsp;
+  <button [hidden]="edit" (click)="updateItem()">Update Item</button>
+</div>
+
