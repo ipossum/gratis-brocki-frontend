@@ -1,6 +1,6 @@
 export * from './item';
 export * from './itemCreationDto';
-export * from '../../../../../../Downloads/typescript-angular-client-generated/model/itemDto';
+export * from './_itemDto';
 export * from './itemUpdateDto';
 export * from './message';
 export * from './messageDto';
